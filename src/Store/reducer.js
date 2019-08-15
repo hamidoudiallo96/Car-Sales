@@ -1,3 +1,5 @@
+import { statement } from "@babel/template";
+
 export const initialState = {
         additionalPrice: 0,
         car: {
@@ -31,9 +33,19 @@ const reducer = (state = initialState,action) =>{
             return{
                 ...state,
                 car:{features: [...state.car.features, action.payload],price: state.car.price, name: state.car.name, image: state.car.image},
-              
-
+            
     
+            }
+
+        case 'INC_TOTAL':
+            return{
+                ...state,
+                additionalPrice: state.additionalPrice + action.payload
+            }
+        case 'DEC_TOTAL':
+            return{
+                ...state,
+                additionalPrice: state.additionalPrice - action.payload
             }
         default:
             return state
